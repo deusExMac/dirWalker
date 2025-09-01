@@ -1,23 +1,22 @@
 
-# fsTraversal
+# DirWalker
 
 A python program that traverses local file system (fs) structures and can apply three different operations: 
 1) export filesystem structure in html/json
 2) search for files/directories and
-3) displays the differences between two directories.
+3) displays the differences between two directories and synchronize their contents.
 
-Exporting the fs structure in html is the default operation. The general idea is to offer an convenient way to browse/navigate the directory/files
+Exporting the a directory structure in html is the default operation. The general idea is to offer an convenient way to browse/navigate the directory/files
 Works also for network mapped drives (more testing needed though).
 
 # Version
 
-v0.9b@29062025
+v0.5b@01092025
 
-  First version. This project was called dirsToHtml and has been moved here (after major refactoring).
+  This is the successor of project fsTraversal.
 
 # TODO
 
-Use the visitor design pattern for traversal code.
 
 
 # How to execute
@@ -25,9 +24,9 @@ The operation mode is determined/activated based on the arguments provided.
 - For searching for directory files:
   
 ```python
-fsTraversal [regular expression] 
+dirWalker [regular expression] 
 ```
-searches for files/directories whose name matches [regular expression] 
+searches for files and directories whose name matches [regular expression] 
 
 NOTE: By default, search is case sensitive. Case insesitive search can be supported using global flags in the regular expression. To avoid "global flags not at the start of the expression..." errors when doing case insensitive search global flags should be used as follows: (?i:d) e.g. for case insensitive search containing d .
 See https://stackoverflow.com/questions/75895460/the-error-was-re-error-global-flags-not-at-the-start-of-the-expression-at-posi
