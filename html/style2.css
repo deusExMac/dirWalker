@@ -1,0 +1,150 @@
+
+body {
+  background-color:#ffffff;
+}
+
+
+.dir a {
+color: green;
+font-size:20px;
+}
+
+
+.fle a {
+/*color: navy;*/
+font-size:11px;
+}
+
+.dre  {
+padding-top:20px;
+//list-style-image:url(t3.png);
+}
+
+#nestedlist, #nestedlist ul .dre {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  list-style-type: none;  
+  margin-left:10;
+  margin-bottom:8px;
+  padding-top:7px;
+  padding-left:30px;
+  text-indent: -4px;
+}
+
+/* UL Layer 1 Rules */
+#nestedlist .dre {
+  list-style-image:url(fld1.jpg);
+  font-size: 20px;
+  font-weight:normal;
+}
+
+/* UL Layer 2 Rules */
+nestedlist ul .dre  {
+  #list-style-image:url(fld1.jpg);
+  font-size: 18px;
+  font-weight: normal;
+  margin-top: 3px;
+}
+
+/* UL Layer 3 Rules */
+#nestedlist ul ul .dre{
+  //list-style-image:url(http://placehold.it/5x15/0000ff);
+  font-size: 16px;
+}
+
+/* UL 4 Rules */
+#nestedlist ul ul ul .dre {
+  //list-style-image:url(http://placehold.it/5x15/ffff00);
+  font-size: 14px;
+}
+
+.child { 
+  list-style-position: inside;
+  //border: dashed 1px blue;
+  //background-color:green;
+}
+
+
+.fle {
+   list-style-image: None;
+   list-style-type:none;
+   margin-left:25px;
+}
+
+#dnav .dni {
+   list-style-image:url(fld2.jpg);
+
+}
+
+
+#container {
+  border: 2px solid #cfccff;
+  margin:auto;
+  width:50%;
+  background-color:#f2f2e1;
+  padding:15px;
+}
+
+#cHeader {
+  color: #0b074d;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size:28px;
+  padding:20px;
+}
+
+#headerText {
+ color:#000000;
+ margin-top:10px;
+ margin-left:15px;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+ font-style: italic;
+ font-weight: normal;
+ font-size:14px;
+}
+
+#about {
+ float: right;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+ font-size:10px;
+ color: navy;
+ font-weight: normal;
+}
+
+#dirnavtitle {
+  margin-top:20px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;  
+  font-size:14px;
+  font-weight:bold;
+  color: blue;
+}
+
+#dirnav {
+  //margin-top:50px;
+  margin-bottom:50px;
+  background-color:#f5f1d3;
+  padding: 10px;
+}
+
+#dirnav ul {
+column-count: 3;
+}
+
+#dirnav li {
+    font-family: Verdana, Arial, Helvetica, sans-serif;    
+    font-size:12px;
+}
+
+#content {
+
+  #border-top: solid 0px #e0defa;
+  
+}
+
+
+#footer {
+  font-family: Verdana, Arial, Helvetica, sans-serif;   
+  float:right;
+  position:relative;
+  font-size:10px;
+  
+}

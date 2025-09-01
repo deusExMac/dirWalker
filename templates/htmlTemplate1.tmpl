@@ -1,0 +1,45 @@
+
+
+
+
+
+
+
+
+<!---directorytemplate--->
+<li id="${ID}" class="dre child"><font color="red"><b>[</b></font>${DIRNAME}<font color="red"><b>]</b></font><ul>${SUBDIRECTORY}</ul>
+
+
+
+<!---filetemplate--->
+
+<li class="fle">${FILELINK}</li>
+
+
+
+<!---pagetemplate--->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>${TITLE}</title>
+<link rel="stylesheet" href="html/style2.css">
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<script type='text/javascript' src='html/jquery-3.7.1.js'></script>
+
+
+
+</head>
+
+
+
+
+<body>
+
+
+
+<html><head> <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> <title>Ερευνητικό έργο Μανώλη Μ. Τζαγκαράκη</title><link rel="stylesheet" href="${CSSFILE}"></head><body id="topPage"><div id="container"><div id="cHeader">${TITLE}<br><div id="headerText">${INTROTEXT}</div></div> <div id="qnav"><div id="dirnavtitle">${DNAVTITLE}</div><div id="dirnav">${DIRNAV}</div></div> <div id="content"> <ul id="nestedlist">${TREE}</ul></div> <div id="footer"><a href="#topPage">Προς την κορυφή της σελίδας</a></div> </div></body></html>
+
+
+</body>
+
+</html>

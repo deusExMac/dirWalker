@@ -1,0 +1,10 @@
+Change name of project. Potential names:
+TreeLine
+DirScope
+DiroNaut
+TreeExplore
+TreExplorer
+DirWalker
+DirTrail
+TreeScope
+PathWalker
