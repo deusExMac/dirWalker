@@ -1,8 +1,8 @@
 
 # DirWalker
 
-A python program that traverses local file system (fs) structures and can apply three different operations: 
-1) export filesystem structure in html/json
+A python program that traverses local file system (fs) structures and can currently apply three operations on the traversed items: 
+1) export filesystem structure in desired formats such as html, json and other
 2) search for files/directories and
 3) displays the differences between two directories and synchronize their contents.
 
@@ -17,6 +17,7 @@ v0.5b@01092025
 
 # TODO
 
+There are still some open issues
 
 
 # How to execute
@@ -35,11 +36,11 @@ See https://stackoverflow.com/questions/75895460/the-error-was-re-error-global-f
 - For comparing two directories
   
 ```python
-fsTraversal -LDIR [directory A] -RDIR [directory B]
+fsTraversal -LDIR [directory A path] -RDIR [directory B path] 
 ```
-compares directories [directory A] (left side) and [directory B] (right side) and displays their differences in directories, files as well as the common files
+compares directories [directory A] (left side) and [directory B] (right side) and displays their differences in directories, files as well as the common files. Depending on additiona options can synchronize their contents
 
-- For exporting the directory structure (in html/json):
+- Exporting the directory structure in various formats (in html/json):
  
 ```python
     fsTraversal
@@ -53,25 +54,41 @@ All operation modes can be modified with arguments which are shown below.
 
 # Supported arguments
 
-Some command line arguments:
+Supported arguments:
+
+## applicable to all operations
 
 -d [directory] : directory to start traversing and apply operation
 
--NR  : non recursive. Won't traverse going into subdirectories
+-NR  : non recursive. Won't go into subdirectories
 
--X [regular expression]: exclude directories/files with name matching [regular expression]
+-mxl [integer] : largest level to delve into. Defaults to -1 which means traverse all levels.
 
--C [regular expression]: include only those directories/files whose names match [regular expression]
+-mxt [duration] : how long to execute the operation/traversal. Places a time constraint on traversal. duration is the amount of time in seconds. After [duration] of seconds, an exception is raised and traversal of directories is stopped. Thw walked directories up to that point is shown. Defaults to -1 which means no time constraint. Useful when walking into large/deep directory structures.
 
--L [integer]: maximum level to delve into during traversal
+-fip [regular expression] : file inclusion regular expression. Regular expression that the file names must match. Only those file names are processed whose names matches this pattern. Defaults to '' which means any file name.
 
--S [integer]: minimum file size
+-fxp [regular expression] : file exclusion regular expression. Regular expression that the file names must NOT match. Only those file names are processed whose name does NOT MATCH this pattern. Defaults to '' which means no exclusion constraint on file name. (thos option for convenience)
 
--Z [integer]: maximum file size
+-dip [regular expression] : directury inclusion regular expression. Regular expression that the DIRECTORY names must match. Only those directory names are processed whose names matches this pattern. Defaults to '' which means any directory name.
 
--Y : ignore directories during traversal
+-dxp [regular expression] : directory exclusion regular expression. Regular expression that the DIRECTORY names must NOT match. Only those DIRECTORY names are processed whose name does NOT MATCH this pattern. Defaults to '' which means no exclusion constraint on DIRECTORY names. (this option for convenience)
 
--F : ignore files during traversal
+-fsz [file size] : exact size of file to match (currectly in bytes). Defaults to -1 meaning any file size.
+
+-mns [file size] : minimum file size to match. Matches files with a file size of >= [file_size]. Defaults to -1 meaning any file size.
+
+-mxs [file size] : maximum file size to match. Matches files with a file size of < [file_size]. Defaults to -1 meaning any file size.
+
+-nf [number of files] : number of FILES to process. Walking stopes after that number of files have been encountered. Defaults to -1 meaning no constraint on number of files.
+
+
+-nd [number of directories] : number of DIRECTORIES to process. Walking stopes after that number of directories have been encountered. Defaults to -1 meaning no constraint on number of directories.
+
+
+
+
+
 
 -P [html template file] : html template file to use when exporting and displaying fs structure in html. For templating, see section html templates.
 
