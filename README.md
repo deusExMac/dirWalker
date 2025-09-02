@@ -36,14 +36,14 @@ See https://stackoverflow.com/questions/75895460/the-error-was-re-error-global-f
 - For comparing two directories
   
 ```python
-fsTraversal -LDIR [directory A path] -RDIR [directory B path] 
+dirWalker -LDIR [directory A path] -RDIR [directory B path] 
 ```
 compares directories [directory A] (left side) and [directory B] (right side) and displays their differences in directories, files as well as the common files. Depending on additiona options can synchronize their contents
 
 - Exporting the directory structure in various formats (in html/json):
  
 ```python
-    fsTraversal
+    dirWalker
 ```
 
 exports the strcture of the (default) directory in html
@@ -58,7 +58,7 @@ Supported arguments:
 
 ## applicable to all operations
 
--d [directory] : directory to start traversing and apply operation
+```-d [directory]``` : directory to start traversing and apply operation
 
 -NR  : non recursive. Won't go into subdirectories
 
