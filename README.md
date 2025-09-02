@@ -68,23 +68,27 @@ Supported arguments:
 
 ```-fip [regular expression]``` : file inclusion regular expression. Regular expression that the file names must match. Only those file names are processed whose names matches this pattern. Defaults to '' which means any file name.
 
--fxp [regular expression] : file exclusion regular expression. Regular expression that the file names must NOT match. Only those file names are processed whose name does NOT MATCH this pattern. Defaults to '' which means no exclusion constraint on file name. (thos option for convenience)
+-```fxp [regular expression]``` : file exclusion regular expression. Regular expression that the file names must NOT match. Only those file names are processed whose name does NOT MATCH this pattern. Defaults to '' which means no exclusion constraint on file name. (this option for convenience)
 
--dip [regular expression] : directury inclusion regular expression. Regular expression that the DIRECTORY names must match. Only those directory names are processed whose names matches this pattern. Defaults to '' which means any directory name.
+-```dip [regular expression]``` : directury inclusion regular expression. Regular expression that the DIRECTORY names must match. Only those directory names are processed whose names matches this pattern. Defaults to '' which means any directory name.
 
--dxp [regular expression] : directory exclusion regular expression. Regular expression that the DIRECTORY names must NOT match. Only those DIRECTORY names are processed whose name does NOT MATCH this pattern. Defaults to '' which means no exclusion constraint on DIRECTORY names. (this option for convenience)
+-```dxp [regular expression]``` : directory exclusion regular expression. Regular expression that the DIRECTORY names must NOT match. Only those DIRECTORY names are processed whose name does NOT MATCH this pattern. Defaults to '' which means no exclusion constraint on DIRECTORY names. (this option for convenience)
 
--fsz [file size] : exact size of file to match (currectly in bytes). Defaults to -1 meaning any file size.
+-```fsz [file size]``` : exact size of file to match (currectly in bytes). Defaults to -1 meaning any file size.
 
--mns [file size] : minimum file size to match. Matches files with a file size of >= [file_size]. Defaults to -1 meaning any file size.
+-```mns [file size]``` : minimum file size to match. Matches files with a file size of >= [file_size]. Defaults to -1 meaning any file size.
 
--mxs [file size] : maximum file size to match. Matches files with a file size of < [file_size]. Defaults to -1 meaning any file size.
+-```mxs [file size]``` : maximum file size to match. Matches files with a file size of < [file_size]. Defaults to -1 meaning any file size.
 
--nf [number of files] : number of FILES to process. Walking stopes after that number of files have been encountered. Defaults to -1 meaning no constraint on number of files.
+-```nf [number of files]``` : number of FILES to process. Walking stops after that number of files have been processed. Defaults to -1 meaning no constraint on number of files.
 
 
--nd [number of directories] : number of DIRECTORIES to process. Walking stopes after that number of directories have been encountered. Defaults to -1 meaning no constraint on number of directories.
+-```nd [number of directories]``` : number of DIRECTORIES to process. Walking stops after that number of directories have been processed. Defaults to -1 meaning no constraint on number of directories.
 
+-```cdo [relation]``` : the relation to apply on the creation date. Can take the following values: > meaning that the file's creation date should be AFTER the date specified in the cd option, < meaning that the file's creation date should be BEFORE the date specified in the cd option and == meaning that the file's creation date should be exactly equal to the value specified in cd.  Defaults to == .
+
+
+-```cd [date]``` : creation date. The creation date value in the form of day/month/year with which the creation date is compared to. Defaults to '' meaning no creation date constraint. Creation date constraint applies to files only.
 
 
 
