@@ -60,13 +60,13 @@ Supported arguments:
 
 ```-d [directory]``` : directory to start traversing and apply operation
 
--NR  : non recursive. Won't go into subdirectories
+```-NR```  : non recursive. Won't go into subdirectories
 
--mxl [integer] : largest level to delve into. Defaults to -1 which means traverse all levels.
+```-mxl [integer]``` : largest level to delve into. Defaults to -1 which means traverse all levels.
 
--mxt [duration] : how long to execute the operation/traversal. Places a time constraint on traversal. duration is the amount of time in seconds. After [duration] of seconds, an exception is raised and traversal of directories is stopped. Thw walked directories up to that point is shown. Defaults to -1 which means no time constraint. Useful when walking into large/deep directory structures.
+```-mxt [duration]``` : how long to execute the operation/traversal. Places a time constraint on traversal. duration is the amount of time in seconds. After [duration] of seconds, an exception is raised and traversal of directories is stopped. Thw walked directories up to that point is shown. Defaults to -1 which means no time constraint. Useful when walking into large/deep directory structures.
 
--fip [regular expression] : file inclusion regular expression. Regular expression that the file names must match. Only those file names are processed whose names matches this pattern. Defaults to '' which means any file name.
+```-fip [regular expression]``` : file inclusion regular expression. Regular expression that the file names must match. Only those file names are processed whose names matches this pattern. Defaults to '' which means any file name.
 
 -fxp [regular expression] : file exclusion regular expression. Regular expression that the file names must NOT match. Only those file names are processed whose name does NOT MATCH this pattern. Defaults to '' which means no exclusion constraint on file name. (thos option for convenience)
 
