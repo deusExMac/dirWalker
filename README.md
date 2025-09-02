@@ -128,27 +128,17 @@ Supported arguments:
 -```-o [filename]``` : The name of the file to save the exported directory traversal
 
 
--P [html template file] : html template file to use when exporting and displaying fs structure in html. For templating, see section html templates.
+## Template related
 
--o [file name] : output html file
+```-s [css files]``` : The list of css files to use for html exports. Can specify more than one css file. In this case, the css files have to be separated by commas (,)
 
--s [css style file] : CSS stylesheet file to use
 
--I [text or file] : Content to use as introduction when exporting in html. Text is first interpreted as a file name. If such file is present, the contents of the file is used as intro. Otherwise the text itself.
+```-i [text]``` : Text to use for introduction. If text is a file, the contents of that file is used as the introduction
 
--T [string] : Title of the exported html file
+```-tl [title]``` : The title of the html page. Defaults to ''.
 
--e : urlencode URLs
+```-RE``` : Replace empty subdirectories. Defaults to False
 
--O : when exporting  structure as a html tree, expand all subfolders
-
--D : Open the exported html file in browser
-
--f : export format. Currently html or json supported. Default html
-
--LDIR [directory] : First (left) directory of comparison. If this is non empty, difference operation is activated.
-
--RDIR [directory] : Second (right) director of comparison
 
 
 # html templates
