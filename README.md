@@ -163,7 +163,7 @@ Some example template files, that export the traversed directories in html and j
 
 Pseudovariables are used to reference specific information of objects inside templates. Pseudovariables are replaced by specific information of objects. These objects include directories, files, exported file, export settings, css files and some other such as title, introduction etc.  
 
-### Directory pseudovariables:
+### Directory pseudovariables
 
 For directories, the following pseudovariables are supported:
 
@@ -181,21 +181,29 @@ For directories, the following pseudovariables are supported:
 
 ```${LEVELNSBP}``` : Number of consecutive tab &NBSP (no break space) characters (used in html documents). Number equals the level of the directory.
 
-```${SUBDIRECTORY}``` : the formatted traversal content of the directory (recursive or not depending on the settings)
-
-```${DIRLINK}``` : URL to directory
-
-```${FILENAME}``` : name of file
-
-```${PARENTPATH}``` : path to directory containing current directory or file
-
-```${NDIRS}``` : Total number of directories from that level and downwards (recursive)
 
 ```${LNDIRS}``` : number of directories in current (local) directory level only (does not include directories in deeper levels)
 
 ```${LNFILES}``` : number of files in current (local) directory level only (does not include files in deeper levels)
 
 ```${NFILES}``` : Total number of files from that level and downwards (recursive)
+
+```${NDIRS}``` : Total number of directories from that level and downwards (recursive)
+
+
+
+```${SUBDIRECTORY}``` : the formatted traversal content of the directory (recursive or not depending on the settings)
+
+
+### File pseudovariables
+
+For files, the following pseudovariables are supported:
+
+
+```${FILENAME}``` : name of file
+
+```${PARENTPATH}``` : path to directory containing current directory or file
+
 
 ```${FILEEXTENSION}``` : extention of file
 
