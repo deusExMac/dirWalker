@@ -74,58 +74,58 @@ Supported arguments:
 
 -```-dxp [regular expression]``` : directory exclusion regular expression. Regular expression that the DIRECTORY names must NOT match. Only those DIRECTORY names are processed whose name does NOT MATCH this pattern. Defaults to '' which means no exclusion constraint on DIRECTORY names. (this option for convenience)
 
--```-fsz [file size]``` : exact size of file to match (currectly in bytes). Defaults to -1 meaning any file size.
+```-fsz [file size]``` : exact size of file to match (currectly in bytes). Defaults to -1 meaning any file size.
 
--```-mns [file size]``` : minimum file size to match. Matches files with a file size of >= [file_size]. Defaults to -1 meaning any file size.
+```-mns [file size]``` : minimum file size to match. Matches files with a file size of >= [file_size]. Defaults to -1 meaning any file size.
 
--```-mxs [file size]``` : maximum file size to match. Matches files with a file size of < [file_size]. Defaults to -1 meaning any file size.
+```-mxs [file size]``` : maximum file size to match. Matches files with a file size of < [file_size]. Defaults to -1 meaning any file size.
 
--```-nf [number of files]``` : number of FILES to process. Walking stops after that number of files have been processed. Defaults to -1 meaning no constraint on number of files.
-
-
--```-nd [number of directories]``` : number of DIRECTORIES to process. Walking stops after that number of directories have been processed. Defaults to -1 meaning no constraint on number of directories.
-
--```-cdo [relation]``` : the relation to apply on the creation date. Can take the following values: > meaning that the file's creation date should be AFTER the date specified in the cd option, < meaning that the file's creation date should be BEFORE the date specified in the cd option and == meaning that the file's creation date should be exactly equal to the value specified in cd.  Defaults to == .
+```-nf [number of files]``` : number of FILES to process. Walking stops after that number of files have been processed. Defaults to -1 meaning no constraint on number of files.
 
 
--```-cd [date]``` : creation date. The creation date value in the form of day/month/year with which the creation date is compared to. Defaults to '' meaning no creation date constraint. Creation date constraint applies to files only.
+```-nd [number of directories]``` : number of DIRECTORIES to process. Walking stops after that number of directories have been processed. Defaults to -1 meaning no constraint on number of directories.
+
+```-cdo [relation]``` : the relation to apply on the creation date. Can take the following values: > meaning that the file's creation date should be AFTER the date specified in the cd option, < meaning that the file's creation date should be BEFORE the date specified in the cd option and == meaning that the file's creation date should be exactly equal to the value specified in cd.  Defaults to == .
 
 
--```-lmdo [relation]``` : the relation to apply on the last modification date. Can take the following values: > meaning that the file's last modification date should be AFTER the date specified in the lmd option, < meaning that the file's last modified date should be BEFORE the date specified in the lmd option and == meaning that the file's last modified date should be exactly equal to the value specified in lmd.  Defaults to == .
+```-cd [date]``` : creation date. The creation date value in the form of day/month/year with which the creation date is compared to. Defaults to '' meaning no creation date constraint. Creation date constraint applies to files only.
 
--```-lmd [date]``` : last modification date. The last modification date value in the form of day/month/year with which the file last modification date is compared to. Defaults to '' meaning no last modification date constraint. Last modification date constraint applies to files only.
+
+```-lmdo [relation]``` : the relation to apply on the last modification date. Can take the following values: > meaning that the file's last modification date should be AFTER the date specified in the lmd option, < meaning that the file's last modified date should be BEFORE the date specified in the lmd option and == meaning that the file's last modified date should be exactly equal to the value specified in lmd.  Defaults to == .
+
+```-lmd [date]``` : last modification date. The last modification date value in the form of day/month/year with which the file last modification date is compared to. Defaults to '' meaning no last modification date constraint. Last modification date constraint applies to files only.
 
 ## Search related
 
--```-P``` : show progress. If present, a window is displayed showing the current progress of the search process.
+```-P``` : show progress. If present, a window is displayed showing the current progress of the search process.
 
--```-NF``` : no files. Don't search for files.
+```-NF``` : no files. Don't search for files.
 
--```-ND``` : no directories. Don't search for directories.
+```-ND``` : no directories. Don't search for directories.
 
--```-I``` : interactive mode. If specified, enters interactive search mode where a trivial interface is shown that allows entering search terms and conduct searches.
+```-I``` : interactive mode. If specified, enters interactive search mode where a trivial interface is shown that allows entering search terms and conduct searches.
 
 
 ## Comparison related
 
--```-LDIR``` : left side directory. During the comparison of two directories one is considered the left side and the other the right side.
+```-LDIR``` : left side directory. During the comparison of two directories one is considered the left side and the other the right side.
 
--```-RDIR``` : right side directory. 
+```-RDIR``` : right side directory. 
 
--```-sync``` : full synchronization. Synchronizes the directories which after this process will have exactly the same directory and files.
+```-sync``` : full synchronization. Synchronizes the directories which after this process will have exactly the same directory and files.
 
--```-fl``` : from left directory side. Add to the directory of the right side the directories and files that are only in the left side. 
+```-fl``` : from left directory side. Add to the directory of the right side the directories and files that are only in the left side. 
 
--```-fr``` : from right directory side. Add to the directory of the left side the directories that are only in the right side. 
+```-fr``` : from right directory side. Add to the directory of the left side the directories that are only in the right side. 
 
 
 ## Export related
 
--```-tp [template file]``` : The template file to use for export.
+```-tp [template file]``` : The template file to use for export.
 
--```-tis [string]``` : The character or string to use as separator for the exported and formatted items. Defaults to ''
+```-tis [string]``` : The character or string to use as separator for the exported and formatted items. Defaults to ''
 
--```-o [filename]``` : The name of the file to save the exported directory traversal
+```-o [filename]``` : The name of the file to save the exported directory traversal
 
 
 ## Template related
@@ -133,11 +133,14 @@ Supported arguments:
 ```-s [css files]``` : The list of css files to use for html exports. Can specify more than one css file. In this case, the css files have to be separated by commas (,)
 
 
-```-i [text]``` : Text to use for introduction. If text is a file, the contents of that file is used as the introduction
+```-i [text]``` : Text to use for introduction. If text is a file, the contents of that file is used as the introduction. Used during export.
 
 ```-tl [title]``` : The title of the html page. Defaults to ''.
 
 ```-RE``` : Replace empty subdirectories. Defaults to False
+
+```-E``` : encode URLs. 
+
 
 
 
