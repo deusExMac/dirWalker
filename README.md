@@ -128,8 +128,6 @@ Supported arguments:
 ```-o [filename]``` : The name of the file to save the exported directory traversal
 
 
-## Template related
-
 ```-s [css files]``` : The list of css files to use for html exports. Can specify more than one css file. In this case, the css files have to be separated by commas (,)
 
 
@@ -137,42 +135,51 @@ Supported arguments:
 
 ```-tl [title]``` : The title of the html page. Defaults to ''.
 
-```-RE``` : Replace empty subdirectories. Defaults to False
+```-RE``` : Replace empty subdirectories when exporting. Defaults to False
 
 ```-E``` : encode URLs. 
 
 
 
 
-# html templates
+# Templates
 
-When exporting directory structure to html, a templating mechanism is used to properly format the encountered objects and page. The templating mechanism features the following:
+When exporting directory structures, a templating mechanism is used to properly format the exported directories and files. A template specifies the placeholders using pseudovariables that will be replaced with specific values during export. 
 
-- a template to format each encountered directory
-- a template to format each encountered file
-- a template to format the page contining the exported and html formatted fs objects
+The templating mechanism features the following:
+
+- a template to format each seen directory
+- a template to format each seen file
+- a template to format the page containing the exported file system objects (file or directory)
 - a set of pseudovariables to reference specific information of the encountered objects. Pseudovariables are used in templates
 
-Templates are stored in html template files. Template files are structured and contain the templates for each of the mentioned object types above (templates for directories/files/page). Separators define the template sections inside the template files:
+Templates are stored in template files (have the extension .tmpl). Template files are structured and contain the templates for each of the mentioned object types above (templates for directories/files/page). Separators define the template sections inside the template files:
 <! ---directorytemplate--- > <! ---filetemplate--- > <! ---pagetemplate--- >
 
-Example html template files can be found in folder html/
+Some example template files, that export the traversed directories in html and json, can be found in folder templates/
 
 
 ## Pseudovariables
-Pseudovariables are used to reference specific info of objects inside templates. Supported pseudovariables include:
 
-```${CSSFILE}``` : stylesheet file to use in web page
+Pseudovariables are used to reference specific information of objects inside templates. Pseudovariables are replaced by specific information of objects. These objects include directories, files, exported file, export settings, css files and some other such as title, introduction etc.  
 
-```${BGCOLOR}```: Background color of web page
+### Directory pseudovariables:
 
-```${INTROTEXT}```: text to display as introduction
+For directories, the following pseudovariables are supported:
 
-```${TITLE}``` : Title of web page
+```${DIRNAME}``` : the name of the directory. 
 
-```${ID}``` : unique id of directory used as element id in html
+```${PATH}```: the fullpath of the directory
 
-```${DIRNAME}``` : name of directory
+```${RLVLCOLOR}```: a random color from a pallette. Changes for each directory in each level
+
+```${OPESTATE}``` : In the export, should this directory appear collapsed or not (i.e. showing all its contents)
+
+```${PARENTPATH}``` : Full path of parent
+
+```${LEVELTABS}``` : Number of consecutive tab (\t) characters. Number equals the level of the directory.
+
+```${LEVELNSBP}``` : Number of consecutive tab &NBSP (no break space) characters (used in html documents). Number equals the level of the directory.
 
 ```${SUBDIRECTORY}``` : the formatted traversal content of the directory (recursive or not depending on the settings)
 
