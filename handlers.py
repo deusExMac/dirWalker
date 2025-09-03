@@ -217,7 +217,7 @@ def makeHtmlLink(itemPath, displayAnchor, urlEncode):
 
 
 
-class HTMLExporter(Visitor):
+class ExportVisitor(Visitor):
     
     def __init__(self, dirT, fileT, pageT, criteria):
 

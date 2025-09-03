@@ -275,7 +275,7 @@ def export(criteria={}):
        sys.exit(-4)
        
     # Create visitor
-    hE = handlers.HTMLExporter(dTemp, fTemp, pTemp, criteria)
+    hE = handlers.ExportVisitor(dTemp, fTemp, pTemp, criteria)
     
 
     
