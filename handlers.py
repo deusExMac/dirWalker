@@ -464,8 +464,7 @@ class ExportVisitor(Visitor):
             
         self.directory_count += 1
 
-        # Add to directory list. Will be used for  ${LISTOFDIRECTORIES}  
-        self.directoryList.append(path)
+        
         
         # Add to stack
         nD = {'type':'directory', 'collapsed':False, 'level':level, 'name':path, 'dname':name, 'lndir':-1, 'lnfiles':-1, 'html':''}
@@ -480,6 +479,9 @@ class ExportVisitor(Visitor):
         nD['html'] = self.dirTemplate
         for k,v in DIRECTORYPSEUDOVARIABLES.items():
             nD['html'] = nD['html'].replace(k, eval(v))
+
+        # Add to directory list. Will be used for  ${LISTOFDIRECTORIES}  
+        self.directoryList.append({'path':path, 'name':name, 'id':dId})
         
         #nD['html'] = self.dirTemplate.replace('${ID}', dId).replace('${DIRNAME}', name).replace('${PATH}', path).replace('${RLVLCOLOR}', random.choice(fontColorPalette)).replace('${LEVEL}', str(level)).replace("${OPENSTATE}", "").replace('${PARENTPATH}', parent)
         self.stack.append(nD)

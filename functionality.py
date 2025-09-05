@@ -338,8 +338,17 @@ def export(criteria={}):
     h = pTemp.replace('${SUBDIRECTORY}', subD['html']).replace('${TRAVERSALROOTDIR}', criteria.get('directory', 'testDirectories/testDir0')).replace('${LNDIRS}', str(res[1])).replace('${LNFILES}', str(res[2])).replace('${NDIRS}', str(res[3])).replace('${NFILES}', str(res[4])).replace('${TERMINATIONCODE}', str(res[0])).replace('${TREE}', fullTree['html']).replace("${OPENSTATE}", "open").replace("${CRITERIA}", json.dumps({k: criteria[k] for k in set(list(criteria.keys())) - set(excludeKeys)}))
    
     # Replace psudovariables related to page
-    h = h.replace('${TITLE}', criteria.get('title', '')).replace('${INTROTEXT}', criteria.get('introduction', ''))
+
+    # TODO: Move this higher so that the intro can contain pseudovariables
+    intro = criteria.get('introduction', '')
+    if (os.path.isfile(criteria.get('introduction', ''))):
+        with open(criteria.get('introduction', ''), 'r') as file:
+             intro = file.read() 
+    
+    h = h.replace('${TITLE}', criteria.get('title', '')).replace('${INTROTEXT}', intro)
     h = h.replace('${CSS}', cssImports)
+
+    
 
     # Should remaining ${SUBDIRECTORY} -signifying empty directories - be replaced?
     if criteria.get('replaceEmptySubdirs', False):
