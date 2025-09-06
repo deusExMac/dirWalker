@@ -17,7 +17,7 @@ v0.5b@01092025
 
 # TODO
 
-There are still some open issues
+There are still some open issues related to efficiency.
 
 
 # How to execute
