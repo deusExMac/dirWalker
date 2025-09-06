@@ -234,7 +234,7 @@ For files, the following pseudovariables are supported:
 
 # Templates
 
-See directory templates/ for a list of example templates. Exports based on these templates can be found in the root folder (htmlTemplate.html, htmlTemplate1.html, htmlTemplate2.html, jsonTemplate.json). File index.html is the default export file.
+See directory templates/ for a list of example templates. Exports based on these templates can be found in the root folder (htmlTemplate.html, htmlTemplate1.html, htmlTemplate2.html, jsonTemplate.json). File index.html is the default export file which is html.
 
 
 
