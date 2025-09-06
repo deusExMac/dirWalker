@@ -38,7 +38,7 @@ See https://stackoverflow.com/questions/75895460/the-error-was-re-error-global-f
 - *Comparing* two directories
   
 ```python
-dirWalker <-LDIR <directory A path>> <-RDIR directory B path> [-sync|-fl|-fr]
+dirWalker <-LDIR <directory A path> <-RDIR directory B path> [-sync|-fl|-fr]
 ```
 compares directories [directory A] (left side) and [directory B] (right side) and displays their differences in directories, files as well as the common files. Depending on additiona options can synchronize their contents
 
@@ -54,7 +54,7 @@ All operation modes can be modified with arguments which are shown below.
 
 ## Supported export formats
 
-dirWalker supports templates that allows to format the export in any way desired. When exporting, two settings should not be explicitly set which should be set according the the desired format:
+dirWalker supports templates that allows to format the export in any way desired. When exporting, two settings **should be explicitly set** according the the desired format:
 
 ```-RE``` option to specify how to display empty directories
 
