@@ -258,7 +258,7 @@ def fsTraversal(root, lvl, visitor=None):
 
 
 
-# TODO: More tests needed
+# TODO: Refactor
 @timeit
 def export(criteria={}):
     global timeStarted
@@ -296,15 +296,7 @@ def export(criteria={}):
       clrprint.clrprint(f'[{getCurrentDateTime()}] Terminated.', clr='yellow')
       
     # Final merge
-    #clrprint.clrprint('\n\n#################################\n##    FINAL MERGE\n#################################\n', clr='yellow')
     hE.collapse(final=True)
-
-    
-    
-    #
-    # Saving to file
-    #
-    
 
     # if no directories and no files are in the initial folder,
     # generate an empty result for the SUBDIRECTORY template variable.  
@@ -313,12 +305,18 @@ def export(criteria={}):
     else:   
        subD = hE.stack.pop()
 
+
+    #
+    # Start replacing pseudovariables to prepare saving to file
+    #
+    
+
     fullTree = hE.stack.pop()
     fullTree['html'] = fullTree['html'].replace('${LEVELTABS}', "")
 
     
     #
-    # Prepare page template 
+    # Preparing some things before replacing
     #
 
     # Replacing external css files in page template.
@@ -332,11 +330,20 @@ def export(criteria={}):
     excludeKeys = ['guiwindow', 'guiprogress', 'guistatus']
 
 
-    # Start replacements
+    ########################################################
+    # Start actual replacing
+    ########################################################
     
     # Replace psudovariables related to traversal
-    h = pTemp.replace('${SUBDIRECTORY}', subD['html']).replace('${TRAVERSALROOTDIR}', criteria.get('directory', 'testDirectories/testDir0')).replace('${LNDIRS}', str(res[1])).replace('${LNFILES}', str(res[2])).replace('${NDIRS}', str(res[3])).replace('${NFILES}', str(res[4])).replace('${TERMINATIONCODE}', str(res[0])).replace('${TREE}', fullTree['html']).replace("${OPENSTATE}", "open").replace("${CRITERIA}", json.dumps({k: criteria[k] for k in set(list(criteria.keys())) - set(excludeKeys)}))
-   
+
+    rootText = criteria.get('directory', 'testDirectories/testDir0')
+    if criteria.get('traversalRootDir', '') != '':
+       rootText = criteria.get('traversalRootDir', '')
+       
+    h = pTemp.replace('${SUBDIRECTORY}', subD['html']).replace('${TRAVERSALROOTDIR}', rootText).replace('${LNDIRS}', str(res[1])).replace('${LNFILES}', str(res[2])).replace('${NDIRS}', str(res[3])).replace('${NFILES}', str(res[4])).replace('${TERMINATIONCODE}', str(res[0])).replace('${TREE}', fullTree['html']).replace("${OPENSTATE}", "open").replace("${CRITERIA}", json.dumps({k: criteria[k] for k in set(list(criteria.keys())) - set(excludeKeys)}))
+    # TODO: not yet supported
+    h = h.replace('${LISTOFDIRECTORIES}', '')
+    
     # Replace psudovariables related to page
 
     # TODO: Move this higher so that the intro can contain pseudovariables
@@ -690,7 +697,7 @@ def selector(mode='export', cfg={}):
     if mode == 'export':
        if not cfg.get('progress', False): 
           result = export(cfg)
-          print(result)
+          #print(result)
        else:
           GUI.progressCommand('export', '', cfg)  
     elif mode == 'search':

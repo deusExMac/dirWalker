@@ -28,9 +28,9 @@ def doGUIOperation(op='', query='', win=None, progressLabel=None, statusLabel=No
     cfg['guistatus'] = statusLabel
 
     if op=='search':
-       sandbox.search(query=f'{query}', criteria=cfg)
+       functionality.search(query=f'{query}', criteria=cfg)
     elif op=='export':
-         sandbox.export(cfg)
+         functionality.export(cfg)
 
     # Small delay before closing window to give
     # a better glimpse on the numbers or messages. 

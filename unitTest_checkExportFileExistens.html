@@ -1,0 +1,398 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title></title>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<script type='text/javascript' src='html/jquery-3.7.1.js'></script>
+
+<script>
+
+   function showPath(elem){
+       //alert(elem.innerText);
+
+       e = document.getElementById("hoveredOver");
+       e.innerText = '[' + elem.innerText + ']';
+   }
+
+
+   function showTextPath(elem, oname, parentPath, ex=''){
+       elem.style.fontWeight='bold';
+       e = document.getElementById("hoveredOver");
+       e.innerText = 'Path:' + parentPath ;
+   }
+
+
+   // make appearance normal after exiting.
+   function unhighlight(elem){
+    // Not used yet.
+    elem.style.fontWeight='normal';
+   }
+
+
+
+   $(document).ready(function(){
+
+  //when mouse is over, save initial value and replace with newText
+  function hover_in(newText, $this){
+
+    console.log(newText);
+    //$("#mainText").text('<b>Name:</b>' + $this.text() )
+    $("#mainText").html('<b>Name:</b>' + $this.text())
+    /*#$this.data('initialText', $this.text());
+    $this.text(newText);*/
+  }
+
+  //when mouse is over, replace with initial value
+  function hover_out($this){
+    //$this.text($this.data('initialText'));
+  }
+
+  $('.fsitem').hover(
+    function(){
+      hover_in("NEW TEXT", $(this));
+    },
+    function() {
+      hover_out($(this));
+  });
+});
+
+    </script>
+<style>
+
+#introText {color:#595959; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px; margin-left:15px; text-align:justify;}
+
+.tableOfDictionaries ul li {
+  list-style: none;
+  padding-left: 50px;
+  padding-top:10px;
+  position: relative;
+}
+
+.tableOfDictionaries ul li:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 5px;
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  background-size: contain;
+  background-image: url("html/fld6.png");
+}
+
+
+
+
+.tableOfDictionaries {
+  column-count: 3;
+  column-gap: 30px;
+  column-rule: 0px solid green;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  margin:10px;
+  word-wrap: break-word;
+  padding:15px;
+  background-color:#fbfbe2;
+}
+
+/* The next fixes first column appearing lower issue
+   See: https://github.com/rstudio/pagedown/issues/295
+*/
+.tableOfDictionaries * {
+  margin-top: 0px;
+}
+
+h2 {
+  column-span: all;
+}
+
+
+.tree{
+  --spacing : 1.5rem;
+  --radius  : 10px;
+}
+
+.tree li{
+  display      : block;
+  position     : relative;
+  padding-left : calc(2 * var(--spacing) - var(--radius) - 2px);
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.tree ul{
+  #margin-left  : calc(var(--radius) - var(--spacing));
+  padding-left : 0;
+
+}
+
+.tree ul li{
+  border-left : 2px solid green;
+
+}
+
+.tree ul li:last-child{
+  border-color : transparent;
+}
+
+.tree ul li::before{
+  content      : '';
+  display      : block;
+  position     : absolute;
+  top          : calc(var(--spacing) / -2);
+  left         : -2px;
+  width        : calc(var(--spacing) + 2px);
+  height       : calc(var(--spacing) + 1px);
+  border       : solid green;
+
+  border-width : 0 0 2px 2px;
+
+  background-image: url("html/fld5.png");
+}
+
+
+.tree summary{
+  display : block;
+  cursor  : pointer;
+}
+
+.tree summary::marker,
+.tree summary::-webkit-details-marker{
+  display : none;
+}
+
+.tree summary:focus{
+  outline : none;
+}
+
+.tree summary:focus-visible{
+  outline : 1px dotted #000;
+}
+
+.tree li::after,
+.tree summary::before{
+  content       : '';
+  display       : block;
+  position      : absolute;
+  /**
+  top           : calc(var(--spacing) / 2 - var(--radius));
+  left          : calc(var(--spacing) - var(--radius) - 1px);
+  width         : calc(2 * var(--radius));
+  height        : calc(2 * var(--radius));
+  border-radius : 50%;
+  **/
+  /*background    : #ddd;*/
+
+}
+
+.tree summary::before{
+  #content     : '+';
+  z-index     : 1;
+  #background  : #696;
+  #color       : #fff;
+
+  #line-height : calc(2 * var(--radius) - 2px);
+  #text-align  : center;
+  background-image: url("fld10.png");
+}
+
+.tree details[open] > summary::before{
+  #content : '-';
+  background-image: url("fld10.png");
+}
+
+.dir {font-size:20px; color:green}
+
+#container {
+  border: 2px solid #fafab9;
+  margin:auto;
+  width:50%;
+  background-color:${BGCOLOR};
+  padding:15px;
+}
+
+
+.folder { font-size:18px; color:#000000; font-weight:normal; font-family: Arial, Helvetica, sans-serif;}
+
+.fle {font-size:12px; font-family: Arial, Helvetica, sans-serif;}
+
+.detail{font-size:14px; color:darkgray; font-style:normal italic}
+
+
+.floatingmenu {
+    position: fixed; margin-left:83%;
+    background-color:bisque;
+    border: 2px solid #FFE4C4;
+    z-index     : 999;
+    /*margin:auto;*/
+    width:30%;
+    /*margin-top:40px;*/
+    /*float:right;
+    margin-right:calc(100vh-30px);
+    */
+    top: 50%;
+    /*left: 50%;*/
+    transform: translate(-50%, -50%);
+
+    }
+
+
+.detailsInfo{
+    padding:10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#hoveredOver {color:grey; font-size:8px;}
+
+.outer{
+
+    width:100%;
+    height:600px;
+    background-color:white;
+    margin:0 auto;
+    }
+
+
+</style>
+
+</head>
+
+
+
+
+<body>
+
+
+
+
+<div class="outer">
+
+   <div id="detailsWindow" class="floatingmenu">
+       <div style="background-color:#4a403d; width:100%;color:white;margin-top:0px">details</div>
+       <div class="detailsInfo">
+          <span id="mainText"><b>Name:</b>Window with some menus</span><br/>
+          <span id="hoveredOver" style="color:green;">XXXXX</span>
+       </div>
+    </div>
+
+<div id="container">
+
+<div id="introText">
+<h2></h2>
+
+<br>
+{"outputFile": "unitTest_checkExportFileExistens.html"}
+</div>
+<div class="tableOfDictionaries">
+    
+</div>
+
+<ul class="tree">
+  <li>
+    <details open>
+      <summary class="folder"><img src="html/fld7.png" style="margin-left:-7px;margin-right:5px;">
+          testDirectories/testDir0 <font color="red">[Termination code: 0]</font> (3 - 1 / 19 - 39)
+      </summary>
+        <ul>
+           <li id="d1-577954">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '1', 'testDirectories/testDir0', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#8c0a0a">1</font><span class='detail'> (<font color='red'><i>1</i></font>, Local [D]:2, Local [F]4 | Total [D] 10, Total [F] 21 )</span></summary><ul class="subdirectory"><li><li id="d2-984398">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '1.1', 'testDirectories/testDir0/1', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#19084a">1.1</font><span class='detail'> (<font color='red'><i>2</i></font>, Local [D]:1, Local [F]1 | Total [D] 3, Total [F] 4 )</span></summary><ul class="subdirectory"><li><li id="d3-301508">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '1.1.1', 'testDirectories/testDir0/1/1.1', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#08259c">1.1.1</font><span class='detail'> (<font color='red'><i>3</i></font>, Local [D]:1, Local [F]1 | Total [D] 2, Total [F] 3 )</span></summary><ul class="subdirectory"><li><li id="d4-937249">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '1.1.1.1', 'testDirectories/testDir0/1/1.1/1.1.1', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#033e6b">1.1.1.1</font><span class='detail'> (<font color='red'><i>4</i></font>, Local [D]:1, Local [F]1 | Total [D] 1, Total [F] 2 )</span></summary><ul class="subdirectory"><li><li id="d5-942319">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '1.1.1.1.1', 'testDirectories/testDir0/1/1.1/1.1.1/1.1.1.1', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#19084a">1.1.1.1.1</font><span class='detail'> (<font color='red'><i>5</i></font>, Local [D]:0, Local [F]1 | Total [D] 0, Total [F] 1 )</span></summary><ul class="subdirectory"><li><li class="fle fsitem" onmouseover="showTextPath(this, 'QRCode.docx', 'testDirectories/testDir0/1/1.1/1.1.1/1.1.1.1/1.1.1.1.1', 'docx')" onmouseout="unhighlight(this);"><img src='html/docx.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.1/1.1.1/1.1.1.1/1.1.1.1.1/QRCode.docx" target="_blank" rel="noopener noreferrer">QRCode.docx</a> (<font color="green">176820</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li></li></ul>
+   </details>
+</li> <li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0/1/1.1/1.1.1/1.1.1.1', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.1/1.1.1/1.1.1.1/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">6148</font>, <font color="#432DD7">[17/08/2025 08:29:27]</font> / <font color="orange">[29/08/2025 08:07:57]</font>)</li></li></ul>
+   </details>
+</li> <li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0/1/1.1/1.1.1', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.1/1.1.1/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">6148</font>, <font color="#432DD7">[02/07/2025 07:02:37]</font> / <font color="orange">[29/08/2025 08:07:57]</font>)</li></li></ul>
+   </details>
+</li> <li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0/1/1.1', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.1/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">6148</font>, <font color="#432DD7">[02/07/2025 07:02:37]</font> / <font color="orange">[29/08/2025 08:07:51]</font>)</li></li></ul>
+   </details>
+</li> <li id="d2-982409">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '1.2', 'testDirectories/testDir0/1', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#051c80">1.2</font><span class='detail'> (<font color='red'><i>2</i></font>, Local [D]:2, Local [F]2 | Total [D] 5, Total [F] 13 )</span></summary><ul class="subdirectory"><li><li id="d3-786223">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '1.2.1', 'testDirectories/testDir0/1/1.2', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#e8740e">1.2.1</font><span class='detail'> (<font color='red'><i>3</i></font>, Local [D]:1, Local [F]1 | Total [D] 3, Total [F] 11 )</span></summary><ul class="subdirectory"><li><li id="d4-994642">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '1.2.1.1', 'testDirectories/testDir0/1/1.2/1.2.1', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#9c1e87">1.2.1.1</font><span class='detail'> (<font color='red'><i>4</i></font>, Local [D]:2, Local [F]1 | Total [D] 2, Total [F] 10 )</span></summary><ul class="subdirectory"><li><li id="d5-118632">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '1.2.1.1.1', 'testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#08259c">1.2.1.1.1</font><span class='detail'> (<font color='red'><i>5</i></font>, Local [D]:0, Local [F]9 | Total [D] 0, Total [F] 9 )</span></summary><ul class="subdirectory"><li><li class="fle fsitem" onmouseover="showTextPath(this, 'VasvaniEtAl_AttentionIsAllYouNeed.pdf', 'testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1', 'pdf')" onmouseout="unhighlight(this);"><img src='html/pdf.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1/VasvaniEtAl_AttentionIsAllYouNeed.pdf" target="_blank" rel="noopener noreferrer">VasvaniEtAl_AttentionIsAllYouNeed.pdf</a> (<font color="green">2215244</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Turing_Paper_1936.pdf', 'testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1', 'pdf')" onmouseout="unhighlight(this);"><img src='html/pdf.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1/Turing_Paper_1936.pdf" target="_blank" rel="noopener noreferrer">Turing_Paper_1936.pdf</a> (<font color="green">2198146</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Shannon_entropy.pdf', 'testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1', 'pdf')" onmouseout="unhighlight(this);"><img src='html/pdf.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1/Shannon_entropy.pdf" target="_blank" rel="noopener noreferrer">Shannon_entropy.pdf</a> (<font color="green">366296</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Dijkstra_GoToConsideredHarmful.pdf', 'testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1', 'pdf')" onmouseout="unhighlight(this);"><img src='html/pdf.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1/Dijkstra_GoToConsideredHarmful.pdf" target="_blank" rel="noopener noreferrer">Dijkstra_GoToConsideredHarmful.pdf</a> (<font color="green">1118487</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Cook_Complexity.pdf', 'testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1', 'pdf')" onmouseout="unhighlight(this);"><img src='html/pdf.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1/Cook_Complexity.pdf" target="_blank" rel="noopener noreferrer">Cook_Complexity.pdf</a> (<font color="green">526819</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Codd_RelationalModel.pdf', 'testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1', 'pdf')" onmouseout="unhighlight(this);"><img src='html/pdf.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1/Codd_RelationalModel.pdf" target="_blank" rel="noopener noreferrer">Codd_RelationalModel.pdf</a> (<font color="green">1319644</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Cerf_Kahn_Protocol.pdf', 'testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1', 'pdf')" onmouseout="unhighlight(this);"><img src='html/pdf.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1/Cerf_Kahn_Protocol.pdf" target="_blank" rel="noopener noreferrer">Cerf_Kahn_Protocol.pdf</a> (<font color="green">179037</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Brooks_NoSilverBullet.pdf', 'testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1', 'pdf')" onmouseout="unhighlight(this);"><img src='html/pdf.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1/Brooks_NoSilverBullet.pdf" target="_blank" rel="noopener noreferrer">Brooks_NoSilverBullet.pdf</a> (<font color="green">807175</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'BernersLee_informationManagement.pdf', 'testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1', 'pdf')" onmouseout="unhighlight(this);"><img src='html/pdf.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/1.2.1.1.1/BernersLee_informationManagement.pdf" target="_blank" rel="noopener noreferrer">BernersLee_informationManagement.pdf</a> (<font color="green">217312</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li></li></ul>
+   </details>
+</li> <li id="d5-279997">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '1.2.1.1.2', 'testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#317534">1.2.1.1.2</font><span class='detail'> (<font color='red'><i>5</i></font>, Local [D]:0, Local [F]0 | Total [D] 0, Total [F] 0 )</span></summary><ul class="subdirectory"><li>${SUBDIRECTORY}</li></ul>
+   </details>
+</li> <li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/1.2.1/1.2.1.1/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">6148</font>, <font color="#432DD7">[17/08/2025 08:29:39]</font> / <font color="orange">[29/08/2025 08:08:09]</font>)</li></li></ul>
+   </details>
+</li> <li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0/1/1.2/1.2.1', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/1.2.1/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">6148</font>, <font color="#432DD7">[02/07/2025 07:02:43]</font> / <font color="orange">[29/08/2025 08:08:09]</font>)</li></li></ul>
+   </details>
+</li> <li id="d3-313873">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '1.2.2', 'testDirectories/testDir0/1/1.2', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#051c80">1.2.2</font><span class='detail'> (<font color='red'><i>3</i></font>, Local [D]:0, Local [F]0 | Total [D] 0, Total [F] 0 )</span></summary><ul class="subdirectory"><li>${SUBDIRECTORY}</li></ul>
+   </details>
+</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Jensen_TheoryOfFirmAndAgency.pdf', 'testDirectories/testDir0/1/1.2', 'pdf')" onmouseout="unhighlight(this);"><img src='html/pdf.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/Jensen_TheoryOfFirmAndAgency.pdf" target="_blank" rel="noopener noreferrer">Jensen_TheoryOfFirmAndAgency.pdf</a> (<font color="green">4139675</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0/1/1.2', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/1.2/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">6148</font>, <font color="#432DD7">[02/07/2025 07:02:43]</font> / <font color="orange">[29/08/2025 08:08:03]</font>)</li></li></ul>
+   </details>
+</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'anExcelFile.xlsx', 'testDirectories/testDir0/1', 'xlsx')" onmouseout="unhighlight(this);"><img src='html/xlsx.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/anExcelFile.xlsx" target="_blank" rel="noopener noreferrer">anExcelFile.xlsx</a> (<font color="green">6165</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'anEmptyExcelFile.xlsx', 'testDirectories/testDir0/1', 'xlsx')" onmouseout="unhighlight(this);"><img src='html/xlsx.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/anEmptyExcelFile.xlsx" target="_blank" rel="noopener noreferrer">anEmptyExcelFile.xlsx</a> (<font color="green">8290</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'QRCode.docx', 'testDirectories/testDir0/1', 'docx')" onmouseout="unhighlight(this);"><img src='html/docx.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/QRCode.docx" target="_blank" rel="noopener noreferrer">QRCode.docx</a> (<font color="green">205283</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0/1', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/1/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">6148</font>, <font color="#432DD7">[02/07/2025 07:02:31]</font> / <font color="orange">[29/08/2025 08:08:03]</font>)</li></li></ul>
+   </details>
+</li> <li id="d1-90770">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '2', 'testDirectories/testDir0', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#9c5f1e">2</font><span class='detail'> (<font color='red'><i>1</i></font>, Local [D]:4, Local [F]4 | Total [D] 6, Total [F] 16 )</span></summary><ul class="subdirectory"><li><li id="d2-508788">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '2.1', 'testDirectories/testDir0/2', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#cc7a16">2.1</font><span class='detail'> (<font color='red'><i>2</i></font>, Local [D]:1, Local [F]1 | Total [D] 1, Total [F] 1 )</span></summary><ul class="subdirectory"><li><li id="d3-663966">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '2.1.1', 'testDirectories/testDir0/2/2.1', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#24b332">2.1.1</font><span class='detail'> (<font color='red'><i>3</i></font>, Local [D]:0, Local [F]0 | Total [D] 0, Total [F] 0 )</span></summary><ul class="subdirectory"><li>${SUBDIRECTORY}</li></ul>
+   </details>
+</li> <li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0/2/2.1', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/2.1/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">6148</font>, <font color="#432DD7">[02/07/2025 07:02:49]</font> / <font color="orange">[06/09/2025 07:29:59]</font>)</li></li></ul>
+   </details>
+</li> <li id="d2-998094">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '2.2', 'testDirectories/testDir0/2', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#409e1e">2.2</font><span class='detail'> (<font color='red'><i>2</i></font>, Local [D]:1, Local [F]2 | Total [D] 1, Total [F] 8 )</span></summary><ul class="subdirectory"><li><li id="d3-712002">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '2.2.1', 'testDirectories/testDir0/2/2.2', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#9c5f1e">2.2.1</font><span class='detail'> (<font color='red'><i>3</i></font>, Local [D]:0, Local [F]6 | Total [D] 0, Total [F] 6 )</span></summary><ul class="subdirectory"><li><li class="fle fsitem" onmouseover="showTextPath(this, 'Vertigo_1958.png', 'testDirectories/testDir0/2/2.2/2.2.1', 'png')" onmouseout="unhighlight(this);"><img src='html/png.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/2.2/2.2.1/Vertigo_1958.png" target="_blank" rel="noopener noreferrer">Vertigo_1958.png</a> (<font color="green">935675</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Terminator-1984.jpg', 'testDirectories/testDir0/2/2.2/2.2.1', 'jpg')" onmouseout="unhighlight(this);"><img src='html/jpg.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/2.2/2.2.1/Terminator-1984.jpg" target="_blank" rel="noopener noreferrer">Terminator-1984.jpg</a> (<font color="green">532499</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Predator_1987.gif', 'testDirectories/testDir0/2/2.2/2.2.1', 'gif')" onmouseout="unhighlight(this);"><img src='html/gif.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/2.2/2.2.1/Predator_1987.gif" target="_blank" rel="noopener noreferrer">Predator_1987.gif</a> (<font color="green">873193</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Blade_Runner_1982.png', 'testDirectories/testDir0/2/2.2/2.2.1', 'png')" onmouseout="unhighlight(this);"><img src='html/png.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/2.2/2.2.1/Blade_Runner_1982.png" target="_blank" rel="noopener noreferrer">Blade_Runner_1982.png</a> (<font color="green">190147</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Alien_1979.jpg', 'testDirectories/testDir0/2/2.2/2.2.1', 'jpg')" onmouseout="unhighlight(this);"><img src='html/jpg.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/2.2/2.2.1/Alien_1979.jpg" target="_blank" rel="noopener noreferrer">Alien_1979.jpg</a> (<font color="green">51120</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'Aguirre-the-Wrath-of-God-1972_jpg.webp', 'testDirectories/testDir0/2/2.2/2.2.1', 'webp')" onmouseout="unhighlight(this);"><img src='html/webp.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/2.2/2.2.1/Aguirre-the-Wrath-of-God-1972_jpg.webp" target="_blank" rel="noopener noreferrer">Aguirre-the-Wrath-of-God-1972_jpg.webp</a> (<font color="green">31816</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li></li></ul>
+   </details>
+</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'MRI_patterns.tif', 'testDirectories/testDir0/2/2.2', 'tif')" onmouseout="unhighlight(this);"><img src='html/tif.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/2.2/MRI_patterns.tif" target="_blank" rel="noopener noreferrer">MRI_patterns.tif</a> (<font color="green">647672</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0/2/2.2', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/2.2/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">6148</font>, <font color="#432DD7">[02/07/2025 07:02:55]</font> / <font color="orange">[06/09/2025 07:31:33]</font>)</li></li></ul>
+   </details>
+</li> <li id="d2-462946">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '2.3', 'testDirectories/testDir0/2', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#281a75">2.3</font><span class='detail'> (<font color='red'><i>2</i></font>, Local [D]:0, Local [F]3 | Total [D] 0, Total [F] 3 )</span></summary><ul class="subdirectory"><li><li class="fle fsitem" onmouseover="showTextPath(this, 'samerandomImage.JPG', 'testDirectories/testDir0/2/2.3', 'JPG')" onmouseout="unhighlight(this);"><img src='html/JPG.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/2.3/samerandomImage.JPG" target="_blank" rel="noopener noreferrer">samerandomImage.JPG</a> (<font color="green">15715</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'randomImage.jpg', 'testDirectories/testDir0/2/2.3', 'jpg')" onmouseout="unhighlight(this);"><img src='html/jpg.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/2.3/randomImage.jpg" target="_blank" rel="noopener noreferrer">randomImage.jpg</a> (<font color="green">15715</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0/2/2.3', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/2.3/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">6148</font>, <font color="#432DD7">[17/08/2025 09:43:37]</font> / <font color="orange">[17/08/2025 09:43:37]</font>)</li></li></ul>
+   </details>
+</li> <li id="d2-886915">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '2.4', 'testDirectories/testDir0/2', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#051c80">2.4</font><span class='detail'> (<font color='red'><i>2</i></font>, Local [D]:0, Local [F]0 | Total [D] 0, Total [F] 0 )</span></summary><ul class="subdirectory"><li>${SUBDIRECTORY}</li></ul>
+   </details>
+</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'sbob.png', 'testDirectories/testDir0/2', 'png')" onmouseout="unhighlight(this);"><img src='html/png.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/sbob.png" target="_blank" rel="noopener noreferrer">sbob.png</a> (<font color="green">8241</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'sbob.jpg', 'testDirectories/testDir0/2', 'jpg')" onmouseout="unhighlight(this);"><img src='html/jpg.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/sbob.jpg" target="_blank" rel="noopener noreferrer">sbob.jpg</a> (<font color="green">27938</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, 'QRCode.jpg', 'testDirectories/testDir0/2', 'jpg')" onmouseout="unhighlight(this);"><img src='html/jpg.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/QRCode.jpg" target="_blank" rel="noopener noreferrer">QRCode.jpg</a> (<font color="green">192444</font>, <font color="#432DD7">[22/08/2025 20:42:41]</font> / <font color="orange">[22/08/2025 20:42:41]</font>)</li> <li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0/2', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/2/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">8196</font>, <font color="#432DD7">[02/07/2025 07:02:49]</font> / <font color="orange">[06/09/2025 07:29:59]</font>)</li></li></ul>
+   </details>
+</li> <li id="d1-244692">
+  <details >
+    <summary class='folder fsitem' onmouseover="showTextPath(this, '3', 'testDirectories/testDir0', 'dir')" onmouseout="unhighlight(this);"><img src='html/fld6.png' width="24" height="24"  style='margin-left:-7px;margin-right:5px;'><font color="#156e82">3</font><span class='detail'> (<font color='red'><i>1</i></font>, Local [D]:0, Local [F]1 | Total [D] 0, Total [F] 1 )</span></summary><ul class="subdirectory"><li><li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0/3', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/3/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">6148</font>, <font color="#432DD7">[17/08/2025 11:17:12]</font> / <font color="orange">[17/08/2025 11:17:12]</font>)</li></li></ul>
+   </details>
+</li> <li class="fle fsitem" onmouseover="showTextPath(this, '.DS_Store', 'testDirectories/testDir0', 'ukn')" onmouseout="unhighlight(this);"><img src='html/ukn.png' width="24" height="24" style='margin-left:-7px;margin-right:5px;'><a href="testDirectories/testDir0/.DS_Store" target="_blank" rel="noopener noreferrer">.DS_Store</a> (<font color="green">6148</font>, <font color="#432DD7">[02/07/2025 07:02:31]</font> / <font color="orange">[06/09/2025 07:29:53]</font>)</li> <!-- This is only the contents of initial directory -->
+        </ul>
+      </details>
+    </li>
+</ul>
+
+
+
+</div>
+
+
+
+
+</div> <!--outer div -->
+
+<script>
+
+
+
+</script>
+
+</body>
+
+</html>

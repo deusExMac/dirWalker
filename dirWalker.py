@@ -79,7 +79,7 @@ def main():
    cmdArgParser = argparse.ArgumentParser(description='Command line arguments', add_help=False)
 
    # Configuration file
-   cmdArgParser.add_argument('-c', '--config', default="fsTraversal.conf")
+   cmdArgParser.add_argument('-c', '--config', default="dirWalker.conf")
     
    # Directory TRAVERSAL related and CRITERIA
    cmdArgParser.add_argument('-d', '--directory', default="testDirectories/testDir0")
