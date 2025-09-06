@@ -13,13 +13,13 @@ Works also for network mapped drives (more testing needed though).
 
 # Version
 
-v0.5b@01092025
+v0.70@06092025
 
   This is the successor of project fsTraversal.
 
 # TODO
 
-There are still some open issues related to efficiency.
+There are still some open issues related to efficiency. More tests needed.
 
 
 # How to execute
