@@ -50,6 +50,13 @@ exports the strcture of the (default) directory in html
 
 All operation modes can be modified with arguments which are shown below.
 
+## Supported formats
+
+dirWalker supports templates that allows to format the export in any way desired. When exporting, two settings should not be explicitly set:
+
+```-RE``` option to specify how to display empty directories
+
+```-tis``` option to specify the separator between exported items (e.g. empty spacebar for html, , (comma) for json etc)
 
 
 # Supported arguments
