@@ -1,5 +1,5 @@
 
-# DirWalker
+# dirWalker
 
 A python program that traverses local file system (fs) structures and can currently apply three operations on the traversed items: 
 1) export filesystem structure in desired formats such as html, json and other
