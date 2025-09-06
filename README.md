@@ -8,7 +8,7 @@ A python program that traverses local file system (fs) structures and can curren
 
 Any custom behavior can be added by providing a Visitor class.
 
-Exporting the a directory structure in html is the default operation. The general idea is to offer an convenient way to browse/navigate the directory/files
+Exporting the a directory structure in html is the default operation. The general idea is to offer an convenient way to represent/browse/navigate a directory structure.
 Works also for network mapped drives (more testing needed though).
 
 # Version
