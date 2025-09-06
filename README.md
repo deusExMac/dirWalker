@@ -6,6 +6,8 @@ A python program that traverses local file system (fs) structures and can curren
 2) search for files/directories and
 3) displays the differences between two directories and synchronize their contents.
 
+Any custom behavior can be added by providing the Visitor class.
+
 Exporting the a directory structure in html is the default operation. The general idea is to offer an convenient way to browse/navigate the directory/files
 Works also for network mapped drives (more testing needed though).
 
@@ -25,7 +27,7 @@ The operation mode is determined/activated based on the arguments provided.
 - For searching for directory files:
   
 ```python
-dirWalker [regular expression] 
+dirWalker [-d <directory>] <regular expression> 
 ```
 searches for files and directories whose name matches [regular expression] 
 
@@ -36,14 +38,14 @@ See https://stackoverflow.com/questions/75895460/the-error-was-re-error-global-f
 - For comparing two directories
   
 ```python
-dirWalker -LDIR [directory A path] -RDIR [directory B path] 
+dirWalker <-LDIR <directory A path>> <-RDIR directory B path> [-sync|-fl|-fr]
 ```
 compares directories [directory A] (left side) and [directory B] (right side) and displays their differences in directories, files as well as the common files. Depending on additiona options can synchronize their contents
 
 - Exporting the directory structure in various formats (in html/json):
  
 ```python
-    dirWalker
+    dirWalker [-d <directory path to export>]
 ```
 
 exports the strcture of the (default) directory in html
