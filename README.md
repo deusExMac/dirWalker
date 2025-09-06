@@ -24,12 +24,12 @@ There are still some open issues related to efficiency.
 
 # How to execute
 The operation mode is determined/activated based on the arguments provided. 
-- *Searching* for directory and files:
+- *Searching* for directories and/or files:
   
 ```python
 dirWalker [-d <directory>] <regular expression> 
 ```
-searches for files and directories whose name matches [regular expression] 
+searches for files and directories whose name matches <regular expression> 
 
 NOTE: By default, search is case sensitive. Case insesitive search can be supported using global flags in the regular expression. To avoid "global flags not at the start of the expression..." errors when doing case insensitive search global flags should be used as follows: (?i:d) e.g. for case insensitive search containing d .
 See https://stackoverflow.com/questions/75895460/the-error-was-re-error-global-flags-not-at-the-start-of-the-expression-at-posi
