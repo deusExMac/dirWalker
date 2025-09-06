@@ -6,7 +6,7 @@ A python program that traverses local file system (fs) structures and can curren
 2) search for files/directories and
 3) displays the differences between two directories and synchronize their contents.
 
-Any custom behavior can be added by providing the Visitor class.
+Any custom behavior can be added by providing a Visitor class.
 
 Exporting the a directory structure in html is the default operation. The general idea is to offer an convenient way to browse/navigate the directory/files
 Works also for network mapped drives (more testing needed though).
