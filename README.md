@@ -45,7 +45,7 @@ compares directories [directory A] (left side) and [directory B] (right side) an
 - *Exporting* the directory structure in various formats:
  
 ```python
-    dirWalker [-tp <template file .tmpl>] [-d <directory path to export>]
+dirWalker [-tp <template file .tmpl>] [-d <directory path to export>]
 ```
 
 exports the structure of the specified directory in a format specified by the template <template file>. Sample template files (.tmpl) are provided in the templates directory. 
