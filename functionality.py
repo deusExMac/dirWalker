@@ -682,10 +682,14 @@ def interactiveSearch(cfg={}):
 
 
 
-def selector(mode='export', cfg={}):
+def selector(mode='export', cfg={}, cmdParams=None):
       
     clrprint.clrprint(f"\nStarting [{mode}] mode from root [{cfg.get('directory', 'testDirectories/testDir0')}] with following paramters:")
-    clrprint.clrprint(f"{cfg}\n", clr='yellow')
+    if cmdParams is None:
+       clrprint.clrprint('No command params object?', clr='red') 
+    else:    
+       clrprint.clrprint(cmdParams.format_values(), clr='yellow')
+       
     for i in range(6):
         clrprint.clrprint(f'[{5-i}]', clr=random.choice(['red', 'blue', 'green', 'yellow', 'purple', 'black']), end='')
         time.sleep(1)

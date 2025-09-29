@@ -47,6 +47,7 @@ import clrprint
 #import json
 
 import configparser
+import configargparse
 import argparse
 
 
@@ -76,7 +77,9 @@ ON_TRAVERSE_ERROR_QUIT = False
 
 def main():
 
-   cmdArgParser = argparse.ArgumentParser(description='Command line arguments', add_help=False)
+   cmdArgParser = configargparse.ArgParser(default_config_files=['dirWalker.conf', 'dWalker.conf', 'dirW.conf'])
+   
+   #cmdArgParser = argparse.ArgumentParser(description='Command line arguments', add_help=False)
 
    # Configuration file
    cmdArgParser.add_argument('-c', '--config', default="dirWalker.conf")
@@ -144,48 +147,9 @@ def main():
    cmdArgParser.add_argument('searchquery', nargs=argparse.REMAINDER, default=[])
 
    knownArgs, unknownArgs = cmdArgParser.parse_known_args()
-   args = vars(knownArgs)
-     
-
-   print('\n\nLoading configuration settings from [', args['config'], ']\n', sep='' )
-   cSettings = configparser.RawConfigParser(allow_no_value=True)
-   # To make keys case sensitive (for a strange reason configparser makes all lowercase).
-   cSettings.optionxform = str   
-   cSettings.read(args['config'])
-
-   # Flatten the red configuration settings and change to necessary type
-   config = {}
+   #args = vars(knownArgs)
+   config = vars(knownArgs)  
    
-   # Flatten the configuration settings while at the same time
-   # change the data type for some settings.
-   # TODO: Is there a better way?
-   intKeys = ['maxLevels', 'maxDirs', 'maxFiles']
-   floatKeys = ['fileSize', 'minFileSize', 'maxFileSize', 'maxTime']
-   boolKeys = ['replaceEmptySubdirs', 'urlencode', 'interactive', 'noDirs', 'noFiles']
-   for s in cSettings.sections():
-       for k in dict(cSettings.items(s)):
-           if k in intKeys:
-              config[k] = cSettings.getint(s, k, fallback=-1)
-           elif k in floatKeys:
-              config[k] = cSettings.getfloat(s, k, fallback=-1.0)
-           elif k in boolKeys:
-               config[k] = cSettings.getboolean(s, k, fallback=False)
-           else:   
-              config[k] = cSettings.get(s, k, fallback='')
-           
-
-   
-   # Override configuration with non-default command line settings.
-   # Command line arguments have highest priority.
-   # TODO: What about boolean arguments????
-   config.update((k,v) for k,v in args.items() if ((v != '' and v!=-1) or (k not in config.keys())))
-   
-   
-   # If these options are set, don't search for directories. Currently
-   # these are supported only for files
-   if config['minFileSize'] >=0 or config['maxFileSize'] >=0 or config['fileSize'] >=0 or config['creationDate']!='' or config['lastModifiedDate'] != '':
-      config['noDirs'] = True    
-
    mode = ''
    # If there is a searchquery of interactive mode, we do search
    if config.get('searchquery', []) != []:
@@ -198,7 +162,7 @@ def main():
       
    
    # Settings done. Now, execute operation based on mode   
-   functionality.selector(mode, config)
+   functionality.selector(mode, config, cmdArgParser)
    
 
 
